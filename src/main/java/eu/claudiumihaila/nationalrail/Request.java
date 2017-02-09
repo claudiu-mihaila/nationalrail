@@ -32,17 +32,16 @@ public class Request {
             LOGGER.error("could not read application properties", e);
         }
 
+        final AccessToken accessToken = new AccessToken();
+        accessToken.setTokenValue(properties.getProperty("accessToken"));
+
         final GetBoardRequestParams params = new GetBoardRequestParams();
-        params.setCrs("LST");
-        params.setNumRows(9);
-//        params.setFilterCrs("SED");
-        params.setFilterCrs(null);
+        params.setCrs(properties.getProperty("destinationCRS"));
+        params.setNumRows(19);
+        params.setFilterCrs(properties.getProperty("originCRS", null));
         params.setFilterType(FilterType.FROM);
         params.setTimeOffset(null);
         params.setTimeWindow(null);
-
-        final AccessToken accessToken = new AccessToken();
-        accessToken.setTokenValue(properties.getProperty("accessToken"));
 
         final StationBoardWithDetailsResponseType resp = serviceSoap.getArrBoardWithDetails(params, accessToken);
         final StationBoardWithDetails result = resp.getGetStationBoardResult();
@@ -52,8 +51,12 @@ public class Request {
                 final StringBuilder stringBuilder = new StringBuilder("");
                 stringBuilder.append(service.getServiceID());
                 stringBuilder.append(" ");
+                stringBuilder.append(service.getOrigin().getLocation().get(0).getCrs());
+                stringBuilder.append("/");
                 stringBuilder.append(service.getOrigin().getLocation().get(0).getLocationName());
                 stringBuilder.append(" - ");
+                stringBuilder.append(service.getDestination().getLocation().get(0).getCrs());
+                stringBuilder.append("/");
                 stringBuilder.append(service.getDestination().getLocation().get(0).getLocationName());
                 stringBuilder.append(" by ");
                 stringBuilder.append(service.getOperator());
@@ -66,7 +69,7 @@ public class Request {
                 stringBuilder.append(" ");
                 stringBuilder.append(service.getCancelReason());
 
-                LOGGER.error(stringBuilder.toString());
+                LOGGER.info(stringBuilder.toString());
             }
         }
     }
