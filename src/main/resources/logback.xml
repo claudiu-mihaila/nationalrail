@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+
+    <!-- The underlying appender will be the standard console one. -->
+    <appender name="stdout" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>
+                %d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n
+            </pattern>
+        </encoder>
+    </appender>
+
+    <appender name="file" class="ch.qos.logback.core.FileAppender">
+        <file>networkrail-logger.log</file>
+        <encoder>
+            <pattern>
+                %d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n
+            </pattern>
+        </encoder>
+    </appender>
+
+    <!-- Wrap calls to the console logger with async dispatching to Disruptor. -->
+    <appender name="asyncstdout" queueSize="4096" class="ch.qos.logback.classic.AsyncAppender">
+        <appender-ref ref="stdout"/>
+    </appender>
+    <!-- Wrap calls to the console logger with async dispatching to Disruptor. -->
+    <appender name="asyncfile" queueSize="4096" class="ch.qos.logback.classic.AsyncAppender">
+        <appender-ref ref="file"/>
+    </appender>
+
+    <logger name="eu.claudiumihaila" level="info"/>
+    <!--<logger name="org.apache.commons.httpclient" level="DEBUG"/>-->
+
+    <!-- Direct all logging through the AsyncAppender. -->
+    <root level="info">
+        <appender-ref ref="asyncstdout"/>
+        <appender-ref ref="asyncfile"/>
+    </root>
+
+</configuration>
