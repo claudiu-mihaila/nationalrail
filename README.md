@@ -1,7 +1,7 @@
 # nationalrail
 National Rail
 
-<img src="src/main/resources/Logos/NRE_Powered_logo.png" alt="Powered by National Rail Enquiries" width="150px" align="right"/>
+<img src="src/main/resources/Logos/NRE_Powered_logo.png" alt="Powered by National Rail Enquiries" width="250px" align="right"/>
 
 To produce the helper classes from WSDL, use:
 
