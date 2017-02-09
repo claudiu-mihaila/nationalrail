@@ -17,7 +17,7 @@ import javax.xml.ws.WebServiceFeature;
  * Generated source version: 2.2
  * 
  */
-@WebServiceClient(name = "ldb", targetNamespace = "http://thalesgroup.com/RTTI/2016-02-16/ldb/", wsdlLocation = "https://lite.realtime.nationalrail.co.uk/OpenLDBWS/wsdl.aspx?ver=2016-02-16")
+@WebServiceClient(name = "ldb", targetNamespace = "http://thalesgroup.com/RTTI/2016-02-16/ldb/", wsdlLocation = "http://lite.realtime.nationalrail.co.uk/OpenLDBWS/wsdl.aspx?ver=2016-02-16")
 public class Ldb
     extends Service
 {
@@ -30,7 +30,7 @@ public class Ldb
         URL url = null;
         WebServiceException e = null;
         try {
-            url = new URL("https://lite.realtime.nationalrail.co.uk/OpenLDBWS/wsdl.aspx?ver=2016-02-16");
+            url = new URL("http://lite.realtime.nationalrail.co.uk/OpenLDBWS/wsdl.aspx?ver=2016-02-16");
         } catch (MalformedURLException ex) {
             e = new WebServiceException(ex);
         }
@@ -82,6 +82,28 @@ public class Ldb
     @WebEndpoint(name = "LDBServiceSoap")
     public LDBServiceSoap getLDBServiceSoap(WebServiceFeature... features) {
         return super.getPort(new QName("http://thalesgroup.com/RTTI/2016-02-16/ldb/", "LDBServiceSoap"), LDBServiceSoap.class, features);
+    }
+
+    /**
+     * 
+     * @return
+     *     returns LDBServiceSoap
+     */
+    @WebEndpoint(name = "LDBServiceSoap12")
+    public LDBServiceSoap getLDBServiceSoap12() {
+        return super.getPort(new QName("http://thalesgroup.com/RTTI/2016-02-16/ldb/", "LDBServiceSoap12"), LDBServiceSoap.class);
+    }
+
+    /**
+     * 
+     * @param features
+     *     A list of {@link javax.xml.ws.WebServiceFeature} to configure on the proxy.  Supported features not in the <code>features</code> parameter will have their default values.
+     * @return
+     *     returns LDBServiceSoap
+     */
+    @WebEndpoint(name = "LDBServiceSoap12")
+    public LDBServiceSoap getLDBServiceSoap12(WebServiceFeature... features) {
+        return super.getPort(new QName("http://thalesgroup.com/RTTI/2016-02-16/ldb/", "LDBServiceSoap12"), LDBServiceSoap.class, features);
     }
 
     private static URL __getWsdlLocation() {

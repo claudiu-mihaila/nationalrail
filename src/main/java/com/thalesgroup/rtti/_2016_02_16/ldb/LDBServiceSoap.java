@@ -7,6 +7,7 @@ import javax.jws.WebResult;
 import javax.jws.WebService;
 import javax.jws.soap.SOAPBinding;
 import javax.xml.bind.annotation.XmlSeeAlso;
+import com.thalesgroup.rtti._2013_11_28.token.types.AccessToken;
 
 
 /**
@@ -30,6 +31,7 @@ public interface LDBServiceSoap {
 
     /**
      * 
+     * @param accessToken
      * @param parameters
      * @return
      *     returns com.thalesgroup.rtti._2016_02_16.ldb.StationBoardResponseType
@@ -38,10 +40,13 @@ public interface LDBServiceSoap {
     @WebResult(name = "GetDepartureBoardResponse", targetNamespace = "http://thalesgroup.com/RTTI/2016-02-16/ldb/", partName = "parameters")
     public StationBoardResponseType getDepartureBoard(
         @WebParam(name = "GetDepartureBoardRequest", targetNamespace = "http://thalesgroup.com/RTTI/2016-02-16/ldb/", partName = "parameters")
-        GetBoardRequestParams parameters);
+        GetBoardRequestParams parameters,
+        @WebParam(name = "AccessToken", targetNamespace = "http://thalesgroup.com/RTTI/2013-11-28/Token/types", header = true, partName = "AccessToken")
+        AccessToken accessToken);
 
     /**
      * 
+     * @param accessToken
      * @param parameters
      * @return
      *     returns com.thalesgroup.rtti._2016_02_16.ldb.StationBoardResponseType
@@ -50,10 +55,13 @@ public interface LDBServiceSoap {
     @WebResult(name = "GetArrivalBoardResponse", targetNamespace = "http://thalesgroup.com/RTTI/2016-02-16/ldb/", partName = "parameters")
     public StationBoardResponseType getArrivalBoard(
         @WebParam(name = "GetArrivalBoardRequest", targetNamespace = "http://thalesgroup.com/RTTI/2016-02-16/ldb/", partName = "parameters")
-        GetBoardRequestParams parameters);
+        GetBoardRequestParams parameters,
+        @WebParam(name = "AccessToken", targetNamespace = "http://thalesgroup.com/RTTI/2013-11-28/Token/types", header = true, partName = "AccessToken")
+        AccessToken accessToken);
 
     /**
      * 
+     * @param accessToken
      * @param parameters
      * @return
      *     returns com.thalesgroup.rtti._2016_02_16.ldb.StationBoardResponseType
@@ -62,10 +70,13 @@ public interface LDBServiceSoap {
     @WebResult(name = "GetArrivalDepartureBoardResponse", targetNamespace = "http://thalesgroup.com/RTTI/2016-02-16/ldb/", partName = "parameters")
     public StationBoardResponseType getArrivalDepartureBoard(
         @WebParam(name = "GetArrivalDepartureBoardRequest", targetNamespace = "http://thalesgroup.com/RTTI/2016-02-16/ldb/", partName = "parameters")
-        GetBoardRequestParams parameters);
+        GetBoardRequestParams parameters,
+        @WebParam(name = "AccessToken", targetNamespace = "http://thalesgroup.com/RTTI/2013-11-28/Token/types", header = true, partName = "AccessToken")
+        AccessToken accessToken);
 
     /**
      * 
+     * @param accessToken
      * @param parameters
      * @return
      *     returns com.thalesgroup.rtti._2016_02_16.ldb.ServiceDetailsResponseType
@@ -74,10 +85,13 @@ public interface LDBServiceSoap {
     @WebResult(name = "GetServiceDetailsResponse", targetNamespace = "http://thalesgroup.com/RTTI/2016-02-16/ldb/", partName = "parameters")
     public ServiceDetailsResponseType getServiceDetails(
         @WebParam(name = "GetServiceDetailsRequest", targetNamespace = "http://thalesgroup.com/RTTI/2016-02-16/ldb/", partName = "parameters")
-        GetServiceDetailsRequestParams parameters);
+        GetServiceDetailsRequestParams parameters,
+        @WebParam(name = "AccessToken", targetNamespace = "http://thalesgroup.com/RTTI/2013-11-28/Token/types", header = true, partName = "AccessToken")
+        AccessToken accessToken);
 
     /**
      * 
+     * @param accessToken
      * @param parameters
      * @return
      *     returns com.thalesgroup.rtti._2016_02_16.ldb.StationBoardWithDetailsResponseType
@@ -86,10 +100,13 @@ public interface LDBServiceSoap {
     @WebResult(name = "GetDepBoardWithDetailsResponse", targetNamespace = "http://thalesgroup.com/RTTI/2016-02-16/ldb/", partName = "parameters")
     public StationBoardWithDetailsResponseType getDepBoardWithDetails(
         @WebParam(name = "GetDepBoardWithDetailsRequest", targetNamespace = "http://thalesgroup.com/RTTI/2016-02-16/ldb/", partName = "parameters")
-        GetBoardRequestParams parameters);
+        GetBoardRequestParams parameters,
+        @WebParam(name = "AccessToken", targetNamespace = "http://thalesgroup.com/RTTI/2013-11-28/Token/types", header = true, partName = "AccessToken")
+        AccessToken accessToken);
 
     /**
      * 
+     * @param accessToken
      * @param parameters
      * @return
      *     returns com.thalesgroup.rtti._2016_02_16.ldb.StationBoardWithDetailsResponseType
@@ -98,10 +115,13 @@ public interface LDBServiceSoap {
     @WebResult(name = "GetArrBoardWithDetailsResponse", targetNamespace = "http://thalesgroup.com/RTTI/2016-02-16/ldb/", partName = "parameters")
     public StationBoardWithDetailsResponseType getArrBoardWithDetails(
         @WebParam(name = "GetArrBoardWithDetailsRequest", targetNamespace = "http://thalesgroup.com/RTTI/2016-02-16/ldb/", partName = "parameters")
-        GetBoardRequestParams parameters);
+        GetBoardRequestParams parameters,
+        @WebParam(name = "AccessToken", targetNamespace = "http://thalesgroup.com/RTTI/2013-11-28/Token/types", header = true, partName = "AccessToken")
+        AccessToken accessToken);
 
     /**
      * 
+     * @param accessToken
      * @param parameters
      * @return
      *     returns com.thalesgroup.rtti._2016_02_16.ldb.StationBoardWithDetailsResponseType
@@ -110,10 +130,13 @@ public interface LDBServiceSoap {
     @WebResult(name = "GetArrDepBoardWithDetailsResponse", targetNamespace = "http://thalesgroup.com/RTTI/2016-02-16/ldb/", partName = "parameters")
     public StationBoardWithDetailsResponseType getArrDepBoardWithDetails(
         @WebParam(name = "GetArrDepBoardWithDetailsRequest", targetNamespace = "http://thalesgroup.com/RTTI/2016-02-16/ldb/", partName = "parameters")
-        GetBoardRequestParams parameters);
+        GetBoardRequestParams parameters,
+        @WebParam(name = "AccessToken", targetNamespace = "http://thalesgroup.com/RTTI/2013-11-28/Token/types", header = true, partName = "AccessToken")
+        AccessToken accessToken);
 
     /**
      * 
+     * @param accessToken
      * @param parameters
      * @return
      *     returns com.thalesgroup.rtti._2016_02_16.ldb.DeparturesBoardResponseType
@@ -122,10 +145,13 @@ public interface LDBServiceSoap {
     @WebResult(name = "GetNextDeparturesResponse", targetNamespace = "http://thalesgroup.com/RTTI/2016-02-16/ldb/", partName = "parameters")
     public DeparturesBoardResponseType getNextDepartures(
         @WebParam(name = "GetNextDeparturesRequest", targetNamespace = "http://thalesgroup.com/RTTI/2016-02-16/ldb/", partName = "parameters")
-        GetDeparturesRequestParams parameters);
+        GetDeparturesRequestParams parameters,
+        @WebParam(name = "AccessToken", targetNamespace = "http://thalesgroup.com/RTTI/2013-11-28/Token/types", header = true, partName = "AccessToken")
+        AccessToken accessToken);
 
     /**
      * 
+     * @param accessToken
      * @param parameters
      * @return
      *     returns com.thalesgroup.rtti._2016_02_16.ldb.DeparturesBoardWithDetailsResponseType
@@ -134,10 +160,13 @@ public interface LDBServiceSoap {
     @WebResult(name = "GetNextDeparturesWithDetailsResponse", targetNamespace = "http://thalesgroup.com/RTTI/2016-02-16/ldb/", partName = "parameters")
     public DeparturesBoardWithDetailsResponseType getNextDeparturesWithDetails(
         @WebParam(name = "GetNextDeparturesWithDetailsRequest", targetNamespace = "http://thalesgroup.com/RTTI/2016-02-16/ldb/", partName = "parameters")
-        GetDeparturesRequestParams parameters);
+        GetDeparturesRequestParams parameters,
+        @WebParam(name = "AccessToken", targetNamespace = "http://thalesgroup.com/RTTI/2013-11-28/Token/types", header = true, partName = "AccessToken")
+        AccessToken accessToken);
 
     /**
      * 
+     * @param accessToken
      * @param parameters
      * @return
      *     returns com.thalesgroup.rtti._2016_02_16.ldb.DeparturesBoardResponseType
@@ -146,10 +175,13 @@ public interface LDBServiceSoap {
     @WebResult(name = "GetFastestDeparturesResponse", targetNamespace = "http://thalesgroup.com/RTTI/2016-02-16/ldb/", partName = "parameters")
     public DeparturesBoardResponseType getFastestDepartures(
         @WebParam(name = "GetFastestDeparturesRequest", targetNamespace = "http://thalesgroup.com/RTTI/2016-02-16/ldb/", partName = "parameters")
-        GetDeparturesRequestParams parameters);
+        GetDeparturesRequestParams parameters,
+        @WebParam(name = "AccessToken", targetNamespace = "http://thalesgroup.com/RTTI/2013-11-28/Token/types", header = true, partName = "AccessToken")
+        AccessToken accessToken);
 
     /**
      * 
+     * @param accessToken
      * @param parameters
      * @return
      *     returns com.thalesgroup.rtti._2016_02_16.ldb.DeparturesBoardWithDetailsResponseType
@@ -158,6 +190,8 @@ public interface LDBServiceSoap {
     @WebResult(name = "GetFastestDeparturesWithDetailsResponse", targetNamespace = "http://thalesgroup.com/RTTI/2016-02-16/ldb/", partName = "parameters")
     public DeparturesBoardWithDetailsResponseType getFastestDeparturesWithDetails(
         @WebParam(name = "GetFastestDeparturesWithDetailsRequest", targetNamespace = "http://thalesgroup.com/RTTI/2016-02-16/ldb/", partName = "parameters")
-        GetDeparturesRequestParams parameters);
+        GetDeparturesRequestParams parameters,
+        @WebParam(name = "AccessToken", targetNamespace = "http://thalesgroup.com/RTTI/2013-11-28/Token/types", header = true, partName = "AccessToken")
+        AccessToken accessToken);
 
 }
