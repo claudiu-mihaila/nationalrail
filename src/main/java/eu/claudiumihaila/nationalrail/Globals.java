@@ -5,4 +5,5 @@ package eu.claudiumihaila.nationalrail;
  */
 public class Globals {
     public final static String ON_TIME = "On time";
+    public final static String DELAYED = "Delayed";
 }

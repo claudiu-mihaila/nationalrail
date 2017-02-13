@@ -6,6 +6,7 @@ import com.thalesgroup.rtti._2016_02_16.ldb.GetBoardRequestParams;
 import com.thalesgroup.rtti._2016_02_16.ldb.LDBServiceSoap;
 import com.thalesgroup.rtti._2016_02_16.ldb.Ldb;
 import com.thalesgroup.rtti._2016_02_16.ldb.StationBoardWithDetailsResponseType;
+import com.thalesgroup.rtti._2016_02_16.ldb.types.ArrayOfServiceItemsWithCallingPoints;
 import com.thalesgroup.rtti._2016_02_16.ldb.types.ServiceItemWithCallingPoints;
 import com.thalesgroup.rtti._2016_02_16.ldb.types.StationBoardWithDetails;
 import org.slf4j.Logger;
@@ -13,6 +14,7 @@ import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.Objects;
 import java.util.Properties;
 
 /**
@@ -46,31 +48,36 @@ public class Request {
         final StationBoardWithDetailsResponseType resp = serviceSoap.getArrBoardWithDetails(params, accessToken);
         final StationBoardWithDetails result = resp.getGetStationBoardResult();
 
-        for (ServiceItemWithCallingPoints service : result.getTrainServices().getService()) {
-            if (!Globals.ON_TIME.equals(service.getEta())) {
-                final StringBuilder stringBuilder = new StringBuilder("");
-                stringBuilder.append(service.getServiceID());
-                stringBuilder.append(" ");
-                stringBuilder.append(service.getOrigin().getLocation().get(0).getCrs());
-                stringBuilder.append("/");
-                stringBuilder.append(service.getOrigin().getLocation().get(0).getLocationName());
-                stringBuilder.append(" - ");
-                stringBuilder.append(service.getDestination().getLocation().get(0).getCrs());
-                stringBuilder.append("/");
-                stringBuilder.append(service.getDestination().getLocation().get(0).getLocationName());
-                stringBuilder.append(" by ");
-                stringBuilder.append(service.getOperator());
-                stringBuilder.append(" eta ");
-                stringBuilder.append(service.getSta());
-                stringBuilder.append(" ata ");
-                stringBuilder.append(service.getEta());
-                stringBuilder.append(" ");
-                stringBuilder.append(service.getDelayReason());
-                stringBuilder.append(" ");
-                stringBuilder.append(service.getCancelReason());
+        final ArrayOfServiceItemsWithCallingPoints trainServices = result.getTrainServices();
+        if (Objects.nonNull(trainServices)) {
+            for (ServiceItemWithCallingPoints service : trainServices.getService()) {
+                if (!Globals.ON_TIME.equals(service.getEta())) {
+                    final StringBuilder stringBuilder = new StringBuilder("");
+                    stringBuilder.append(service.getServiceID());
+                    stringBuilder.append(" ");
+                    stringBuilder.append(service.getOrigin().getLocation().get(0).getCrs());
+                    stringBuilder.append("/");
+                    stringBuilder.append(service.getOrigin().getLocation().get(0).getLocationName());
+                    stringBuilder.append(" - ");
+                    stringBuilder.append(service.getDestination().getLocation().get(0).getCrs());
+                    stringBuilder.append("/");
+                    stringBuilder.append(service.getDestination().getLocation().get(0).getLocationName());
+                    stringBuilder.append(" by ");
+                    stringBuilder.append(service.getOperator());
+                    stringBuilder.append(" sta ");
+                    stringBuilder.append(service.getSta());
+                    stringBuilder.append(" eta ");
+                    stringBuilder.append(service.getEta());
+                    stringBuilder.append(" ");
+                    stringBuilder.append(service.getDelayReason());
+                    stringBuilder.append(" ");
+                    stringBuilder.append(service.getCancelReason());
 
-                LOGGER.info(stringBuilder.toString());
+                    LOGGER.info(stringBuilder.toString());
+                }
             }
+        } else {
+            LOGGER.info("No services found!");
         }
     }
 }
